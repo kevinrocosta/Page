@@ -1,66 +1,65 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Seleciona todos os elementos necessários uma única vez
-    const langButtons = document.querySelectorAll('.lang-btn');
+document.addEventListener('DOMContentLoaded', () => {
+
+    // --- LÓGICA PARA TROCAR O IDIOMA ---
+    const languageButtons = document.querySelectorAll('.lang-btn');
     const translatableElements = document.querySelectorAll('[data-lang]');
-    const infoIcons = document.querySelectorAll('.reveal-info');
-    const allLinkCards = document.querySelectorAll('.link-card');
+
+    // Define o idioma inicial com base no botão ativo
+    const initialLang = document.querySelector('.lang-btn.active')?.dataset.setLang || 'pt';
+    switchLanguage(initialLang);
     
-    // Pega o idioma salvo no navegador ou usa 'pt' como padrão
-    const savedLang = localStorage.getItem('preferredLanguage') || 'pt';
-
-    // Função principal para definir o idioma da página
-    function setLanguage(lang) {
-        translatableElements.forEach(el => {
-            el.style.display = 'none';
-        });
-        document.querySelectorAll(`[data-lang="${lang}"]`).forEach(el => {
-            el.style.display = 'block';
-        });
-        langButtons.forEach(btn => {
-            btn.classList.toggle('active', btn.dataset.setLang === lang);
-        });
-        localStorage.setItem('preferredLanguage', lang);
-        document.documentElement.lang = lang;
-    }
-
-    // Adiciona o evento de clique para cada botão de idioma
-    langButtons.forEach(button => {
+    languageButtons.forEach(button => {
         button.addEventListener('click', () => {
-            setLanguage(button.dataset.setLang);
+            const selectedLang = button.dataset.setLang;
+            
+            // Remove a classe 'active' de todos os botões
+            languageButtons.forEach(btn => btn.classList.remove('active'));
+            // Adiciona a classe 'active' ao botão clicado
+            button.classList.add('active');
+            
+            // Chama a função para trocar o idioma
+            switchLanguage(selectedLang);
         });
     });
 
-    // Adiciona o evento de clique para cada CTA de "Desbloquear"
-    infoIcons.forEach(icon => {
-        icon.addEventListener('click', function(event) {
-            event.preventDefault(); 
-            event.stopPropagation();
-            
-            const parentCard = this.closest('.link-card');
-            const secretInfo = parentCard.querySelector('.secret-info');
-            
-            if (secretInfo) {
-                secretInfo.classList.toggle('visible');
+    function switchLanguage(lang) {
+        translatableElements.forEach(element => {
+            if (element.dataset.lang === lang) {
+                element.style.display = 'block'; // ou 'inline', 'flex', etc., dependendo do elemento
+            } else {
+                element.style.display = 'none';
             }
         });
-    });
+        // Garante que elementos com o mesmo texto (como os títulos) não fiquem sobrepostos
+        const subtitles = document.querySelectorAll('.subtitle');
+        subtitles.forEach(el => el.style.display = (el.dataset.lang === lang) ? 'block' : 'none');
+    }
 
-    // LÓGICA PARA TORNAR LOGO E TÍTULO CLICÁVEIS
-    allLinkCards.forEach(card => {
-        const clickableAreas = card.querySelectorAll('.clickable-area');
-        const targetLinkElement = card.querySelector('.action-link');
 
-        if (targetLinkElement) {
-            const url = targetLinkElement.href;
-            clickableAreas.forEach(area => {
-                area.addEventListener('click', (event) => {
-                    event.stopPropagation();
-                    window.open(url, '_blank');
-                });
-            });
+    // --- LÓGICA PARA DESBLOQUEAR O CARD ---
+    const revealButtons = document.querySelectorAll('.reveal-info');
+    const clickableAreas = document.querySelectorAll('.clickable-area');
+
+    function toggleUnlock(cardElement) {
+        if (cardElement) {
+            cardElement.classList.toggle('unlocked');
         }
+    }
+
+    revealButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            event.stopPropagation(); // Impede que o clique se propague para outros elementos
+            const card = button.closest('.link-card');
+            toggleUnlock(card);
+        });
+    });
+    
+    // Adiciona funcionalidade de clique na área do cabeçalho do card
+    clickableAreas.forEach(area => {
+        area.addEventListener('click', () => {
+            const card = area.closest('.link-card');
+            toggleUnlock(card);
+        });
     });
 
-    // Define o idioma inicial assim que a página carrega
-    setLanguage(savedLang);
 });
