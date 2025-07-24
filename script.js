@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Adiciona o evento de clique para cada ícone de informação '?'
+    // Adiciona o evento de clique para cada CTA de "Desbloquear"
     infoIcons.forEach(icon => {
         icon.addEventListener('click', function(event) {
             event.preventDefault(); 
