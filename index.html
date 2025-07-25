@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PlayTvPlus Hub</title>
+    <title>PlayTvPlus Hub - Seu hub de entretenimento</title>
+    
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,27 +13,48 @@
 </head>
 <body>
     <main class="container">
+        
         <header>
             <img src="Images/logo.png" alt="Logo PlayTvPlus" class="profile-logo">
             <h1>@PlayTvPlus</h1>
             <p class="subtitle" data-lang="pt">Seu hub de apps de entretenimento</p>
-            </header>
+            <p class="subtitle" data-lang="es" style="display:none;">Tu hub de apps de entretenimiento</p>
+            <p class="subtitle" data-lang="en" style="display:none;">Your hub for entertainment apps</p>
+            <p class="subtitle" data-lang="fr" style="display:none;">Votre hub d'applications de divertissement</p>
+        </header>
+
         <section class="social-icons">
             <a href="https://www.tiktok.com/@pleytvplus" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
         </section>
+
         <section class="language-switcher">
             <button class="lang-btn active" data-set-lang="pt">🇧🇷 PT</button>
-            </section>
+            <button class="lang-btn" data-set-lang="es">🇲🇽 ES</button>
+            <button class="lang-btn" data-set-lang="en">🇺🇸 EN</button>
+            <button class="lang-btn" data-set-lang="fr">🇫🇷 FR</button>
+        </section>
+        
         <a href="https://www.tiktok.com/@pleytvplus" target="_blank" class="update-notification">
             <div class="pulse"></div>
             <div class="notification-icon">🚀</div>
             <div class="notification-text">
                 <strong data-lang="pt">CATÁLOGO SEMPRE ATUALIZADO!</strong>
+                <strong data-lang="es" style="display:none;">¡CATÁLOGO SIEMPRE ACTUALIZADO!</strong>
+                <strong data-lang="en" style="display:none;">CATALOG ALWAYS UPDATED!</strong>
+                <strong data-lang="fr" style="display:none;">CATALOGUE TOUJOURS À JOUR !</strong>
+                
                 <span data-lang="pt">Apps novos toda semana. Siga no TikTok para dicas diárias!</span>
-                </div>
+                <span data-lang="es" style="display:none;">Nuevas apps cada semana. ¡Sigue en TikTok para consejos diarios!</span>
+                <span data-lang="en" style="display:none;">New apps every week. Follow on TikTok for daily tips!</span>
+                <span data-lang="fr" style="display:none;">Nouvelles applis chaque semaine. Suivez sur TikTok pour des astuces quotidiennes !</span>
+            </div>
         </a>
 
         <h2 class="section-title" data-lang="pt">App em Destaque</h2>
+        <h2 class="section-title" data-lang="es" style="display:none;">App Destacada</h2>
+        <h2 class="section-title" data-lang="en" style="display:none;">Featured App</h2>
+        <h2 class="section-title" data-lang="fr" style="display:none;">App en Vedette</h2>
+
         <section class="links-list">
              <div class="link-card featured">
                 <div class="card-header clickable-area">
@@ -40,24 +62,36 @@
                     <div class="link-text">
                         <strong>Photos Anikmi</strong>
                         <span data-lang="pt">Transforme suas fotos com efeitos de animação por IA.</span>
-                        </div>
+                        <span data-lang="es" style="display:none;">Transforma tus fotos con efectos de animación IA.</span>
+                        <span data-lang="en" style="display:none;">Transform your photos with AI animation effects.</span>
+                        <span data-lang="fr" style="display:none;">Transformez vos photos avec des effets d'animation IA.</span>
+                    </div>
                 </div>
                 <div class="secret-info">
                     <div class="link-card-instruction">
                         <span data-lang="pt"><i class="fa-solid fa-key"></i> Vá em ⚙️ e clique 7 vezes em: <code>Let’s Go</code></span>
-                        </div>
+                        <span data-lang="es" style="display:none;"><i class="fa-solid fa-key"></i> Ve a ⚙️ y haz clic 7 veces en: <code>Let’s Go</code></span>
+                        <span data-lang="en" style="display:none;"><i class="fa-solid fa-key"></i> Go to ⚙️ and click 7 times on: <code>Let’s Go</code></span>
+                        <span data-lang="fr" style="display:none;"><i class="fa-solid fa-key"></i> Allez dans ⚙️ et cliquez 7 fois sur: <code>Let’s Go</code></span>
+                    </div>
                     <section class="ad-section"><div class="ad-box"><span class="ad-placeholder">Publicidade</span></div></section>
                     <div class="card-footer">
                         <a href="https://apps.apple.com/br/app/photos-anikmi/id6743954870" target="_blank" class="action-link">
-                            <span data-lang="pt">Abrir</span>
-                            </a>
+                            <span data-lang="pt">Abrir na App Store</span>
+                            <span data-lang="es" style="display:none;">Abrir en App Store</span>
+                            <span data-lang="en" style="display:none;">Open in App Store</span>
+                            <span data-lang="fr" style="display:none;">Ouvrir dans l'App Store</span>
+                        </a>
                     </div>
                 </div>
                 <div class="card-footer-base">
                     <button class="info-cta reveal-info">
                         <i class="fas fa-key"></i>
                         <span data-lang="pt">Desbloquear</span>
-                        </button>
+                        <span data-lang="es" style="display:none;">Desbloquear</span>
+                        <span data-lang="en" style="display:none;">Unlock</span>
+                        <span data-lang="fr" style="display:none;">Déverrouiller</span>
+                    </button>
                 </div>
             </div>
         </section>
@@ -65,11 +99,99 @@
         <section class="ad-section"><div class="ad-box"><span class="ad-placeholder">Publicidade</span></div></section>
 
         <h2 class="section-title" data-lang="pt">Mais Apps</h2>
+        <h2 class="section-title" data-lang="es" style="display:none;">Más Apps</h2>
+        <h2 class="section-title" data-lang="en" style="display:none;">More Apps</h2>
+        <h2 class="section-title" data-lang="fr" style="display:none;">Plus d'Apps</h2>
+
         <section class="links-list">
-            </section>
+            <div class="link-card">
+                <div class="card-header clickable-area">
+                    <img src="Images/logo-readprogre.png" alt="READ PROGRE" class="link-icon">
+                    <div class="link-text">
+                        <strong>READ PROGRE</strong>
+                        <span data-lang="pt">Gerencie sua jornada de leitura.</span>
+                        <span data-lang="es" style="display:none;">Gestiona tu viaje de lectura.</span>
+                        <span data-lang="en" style="display:none;">Manage your reading journey.</span>
+                        <span data-lang="fr" style="display:none;">Gérez votre parcours de lecture.</span>
+                    </div>
+                </div>
+                <div class="secret-info">
+                    <div class="link-card-instruction">
+                        <span data-lang="pt"><i class="fa-solid fa-key"></i> Na busca, digite o código: <code>Map</code></span>
+                        <span data-lang="es" style="display:none;"><i class="fa-solid fa-key"></i> En la búsqueda, escribe el código: <code>Map</code></span>
+                        <span data-lang="en" style="display:none;"><i class="fa-solid fa-key"></i> In the search bar, type the code: <code>Map</code></span>
+                        <span data-lang="fr" style="display:none;"><i class="fa-solid fa-key"></i> Dans la recherche, tapez le code: <code>Map</code></span>
+                    </div>
+                     <section class="ad-section"><div class="ad-box"><span class="ad-placeholder">Publicidade</span></div></section>
+                     <div class="card-footer">
+                        <a href="https://apps.apple.com/br/app/read-progre/id6745169978" target="_blank" class="action-link">
+                            <span data-lang="pt">Abrir na App Store</span>
+                             <span data-lang="es" style="display:none;">Abrir en App Store</span>
+                            <span data-lang="en" style="display:none;">Open in App Store</span>
+                            <span data-lang="fr" style="display:none;">Ouvrir dans l'App Store</span>
+                        </a>
+                    </div>
+                </div>
+                 <div class="card-footer-base">
+                    <button class="info-cta reveal-info">
+                        <i class="fas fa-key"></i>
+                        <span data-lang="pt">Desbloquear</span>
+                        <span data-lang="es" style="display:none;">Desbloquear</span>
+                        <span data-lang="en" style="display:none;">Unlock</span>
+                        <span data-lang="fr" style="display:none;">Déverrouiller</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="link-card">
+                <div class="card-header clickable-area">
+                    <img src="Images/logo-gamebox.png" alt="GameBox" class="link-icon">
+                    <div class="link-text">
+                        <strong>GameBox: Perfect Game</strong>
+                        <span data-lang="pt">Desafie sua mente com mini-jogos.</span>
+                        <span data-lang="es" style="display:none;">Desafía tu mente con minijuegos.</span>
+                        <span data-lang="en" style="display:none;">Challenge your mind with mini-games.</span>
+                        <span data-lang="fr" style="display:none;">Défiez votre esprit avec des mini-jeux.</span>
+                    </div>
+                </div>
+                <div class="secret-info">
+                    <div class="link-card-instruction">
+                        <span data-lang="pt"><i class="fa-solid fa-key"></i> Vá em ⚙️ e ative a opção: <code>Sound</code></span>
+                        <span data-lang="es" style="display:none;"><i class="fa-solid fa-key"></i> Ve a ⚙️ y activa la opción: <code>Sound</code></span>
+                        <span data-lang="en" style="display:none;"><i class="fa-solid fa-key"></i> Go to ⚙️ and activate the option: <code>Sound</code></span>
+                        <span data-lang="fr" style="display:none;"><i class="fa-solid fa-key"></i> Allez dans ⚙️ et activez l'option: <code>Sound</code></span>
+                    </div>
+                     <section class="ad-section"><div class="ad-box"><span class="ad-placeholder">Publicidade</span></div></section>
+                     <div class="card-footer">
+                        <a href="https://apps.apple.com/br/app/gamebox-perfect-game/id6747025926" target="_blank" class="action-link">
+                            <span data-lang="pt">Abrir na App Store</span>
+                             <span data-lang="es" style="display:none;">Abrir en App Store</span>
+                            <span data-lang="en" style="display:none;">Open in App Store</span>
+                            <span data-lang="fr" style="display:none;">Ouvrir dans l'App Store</span>
+                        </a>
+                    </div>
+                </div>
+                 <div class="card-footer-base">
+                     <button class="info-cta reveal-info">
+                        <i class="fas fa-key"></i>
+                        <span data-lang="pt">Desbloquear</span>
+                        <span data-lang="es" style="display:none;">Desbloquear</span>
+                        <span data-lang="en" style="display:none;">Unlock</span>
+                        <span data-lang="fr" style="display:none;">Déverrouiller</span>
+                    </button>
+                </div>
+            </div>
+        </section>
     </main>
+    
     <footer>
-        </footer>
+        <div class="footer-links">
+            <a href="politica-de-privacidade.html" target="_blank">Política de Privacidade</a>
+            <a href="termos-de-uso.html" target="_blank">Termos de Uso</a>
+        </div>
+        <p>PlayTvPlus © 2025. Todos os direitos reservados.</p>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
