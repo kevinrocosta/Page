@@ -27,20 +27,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setLanguage(savedLang);
 
-    // --- LÓGICA PARA DESBLOQUEAR O CARD ---
+    // --- LÓGICA PARA DESBLOQUEAR O CARD E MOSTRAR BOTÃO COM DELAY ---
     const allLinkCards = document.querySelectorAll('.link-card');
 
     allLinkCards.forEach(card => {
         const revealButton = card.querySelector('.reveal-info');
         const clickableArea = card.querySelector('.clickable-area');
         
-        // Função unificada para abrir/fechar a seção de detalhes
         function toggleUnlock(event) {
-            event.stopPropagation(); // Impede que o clique se propague
+            event.stopPropagation();
             card.classList.toggle('unlocked');
         }
 
-        // O botão "Desbloquear" e a área do cabeçalho fazem a mesma coisa
+        // Tanto o botão "Desbloquear" quanto a área do cabeçalho fazem a mesma coisa.
         if (revealButton) {
             revealButton.addEventListener('click', toggleUnlock);
         }
