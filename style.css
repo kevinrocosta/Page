@@ -56,21 +56,7 @@ header .subtitle {
     color: var(--secondary-text);
 }
 
-/* --- Ícones Sociais e Seletor de Idioma --- */
-.social-icons {
-    margin-bottom: 20px;
-}
-
-.social-icons a {
-    color: var(--secondary-text);
-    font-size: 1.8rem;
-    transition: color 0.3s;
-}
-
-.social-icons a:hover {
-    color: var(--primary-text);
-}
-
+/* --- Seletor de Idioma --- */
 .language-switcher {
     margin-bottom: 30px;
     display: flex;
@@ -80,7 +66,7 @@ header .subtitle {
 
 .lang-btn {
     background: var(--card-color);
-    color: #e0e0e0; /* CORRIGIDO PARA MAIOR CONTRASTE */
+    color: #e0e0e0;
     border: 1px solid var(--border-color);
     padding: 8px 12px;
     border-radius: 20px;
@@ -93,57 +79,6 @@ header .subtitle {
     background-color: var(--accent-color);
     color: var(--primary-text);
     border-color: var(--accent-color);
-}
-
-/* --- Notificação de Atualização --- */
-@keyframes pulse-animation {
-    0% { box-shadow: 0 0 0 0 rgba(29, 185, 84, 0.7); }
-    100% { box-shadow: 0 0 0 15px rgba(29, 185, 84, 0); }
-}
-
-.update-notification {
-    display: flex;
-    align-items: center;
-    background-color: var(--card-color);
-    padding: 15px;
-    border-radius: 12px;
-    margin-bottom: 30px;
-    text-decoration: none;
-    color: var(--primary-text);
-    border: 1px solid var(--border-color);
-    transition: background-color 0.3s;
-}
-
-.update-notification:hover {
-    background-color: var(--hover-color);
-}
-
-.pulse {
-    width: 12px; /* CORRIGIDO: Largura e altura iguais */
-    height: 12px;
-    background-color: var(--accent-color);
-    border-radius: 50%; /* Garante um círculo perfeito */
-    animation: pulse-animation 1.5s infinite;
-    margin-right: 15px;
-    flex-shrink: 0;
-}
-
-.notification-icon {
-    font-size: 1.5rem;
-    margin-right: 15px;
-}
-
-.notification-text {
-    text-align: left;
-}
-
-.notification-text strong {
-    display: block;
-}
-
-.notification-text span {
-    font-size: 0.9rem;
-    color: var(--secondary-text);
 }
 
 /* --- Títulos de Seção --- */
@@ -194,11 +129,6 @@ header .subtitle {
     flex-shrink: 0;
 }
 
-.link-icon.large {
-    width: 60px;
-    height: 60px;
-}
-
 .link-text {
     text-align: left;
     flex-grow: 1;
@@ -223,8 +153,7 @@ header .subtitle {
 }
 
 .link-card.unlocked .secret-info {
-    max-height: 500px;
-    padding-top: 0;
+    max-height: 500px; /* Altura máxima para a animação */
     padding-bottom: 20px;
 }
 
@@ -250,10 +179,7 @@ header .subtitle {
     width: 100%;
     margin: 20px 0;
 }
-.secret-info .ad-section {
-    margin-top: 15px;
-    margin-bottom: 20px;
-}
+
 .ad-box {
     width: 100%;
     min-height: 100px;
@@ -270,15 +196,9 @@ header .subtitle {
     font-size: 0.9rem;
 }
 
-.card-footer-base, .card-footer {
+.card-footer-base {
     display: flex;
     border-top: 1px solid var(--border-color);
-}
-
-.card-footer {
-    padding-top: 20px;
-    border-top: none;
-    justify-content: center;
 }
 
 .link-card.unlocked .card-footer-base {
@@ -309,11 +229,6 @@ header .subtitle {
     background-color: var(--hover-color);
 }
 
-.info-cta i {
-    margin-right: 8px;
-    color: var(--accent-color);
-}
-
 .action-link {
     display: inline-block;
     background-color: var(--accent-color);
@@ -326,71 +241,12 @@ header .subtitle {
     transition: all 0.4s ease;
     opacity: 0;
     transform: translateY(10px);
-    transition-delay: 0.2s;
 }
 .link-card.unlocked .action-link {
     opacity: 1;
     transform: translateY(0);
-    transition-delay: 0.4s;
 }
 .action-link:hover {
-    background-color: #25d366;
-    transform: scale(1.05);
-}
-
-/* Seção da Newsletter */
-.newsletter-section {
-    background-color: var(--card-color);
-    border: 1px solid var(--border-color);
-    border-radius: 15px;
-    padding: 30px;
-    margin-top: 40px;
-    text-align: center;
-}
-.newsletter-subtitle {
-    color: var(--secondary-text);
-    font-size: 0.95rem;
-    margin-top: -15px;
-    margin-bottom: 25px;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-}
-.newsletter-section form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    max-width: 400px;
-    margin: 0 auto;
-}
-.newsletter-section input[type="email"] {
-    background-color: #2a2a2a;
-    border: 1px solid var(--border-color);
-    padding: 14px;
-    border-radius: 10px;
-    color: var(--primary-text);
-    font-family: var(--font-family);
-    font-size: 1rem;
-    text-align: center;
-    transition: border-color 0.3s, box-shadow 0.3s;
-}
-.newsletter-section input[type="email"]:focus {
-    outline: none;
-    border-color: var(--accent-color);
-    box-shadow: 0 0 10px rgba(29, 185, 84, 0.3);
-}
-.newsletter-section button[type="submit"] {
-    background-color: var(--accent-color);
-    color: var(--primary-text);
-    padding: 14px;
-    border-radius: 25px;
-    border: none;
-    font-weight: bold;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
-}
-.newsletter-section button[type="submit"]:hover {
     background-color: #25d366;
     transform: scale(1.05);
 }
