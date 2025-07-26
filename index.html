@@ -1,624 +1,204 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PlayTvPlus Hub - Seu hub de entretenimento</title>
-
-    <meta name="monetag" content="99274bae592fe50cee51a0b9ac9526c2">
-
-    <meta name="description" content="Seu hub de apps de entretenimento. Encontre dicas e atalhos para os melhores aplicativos recomendados no TikTok.">
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <meta name="monetag" content="64d83a44983579b6c9bd5da876f2899e">
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"></noscript>
-
+    <title>@PlayTVPlus - Seu hub de apps</title>
+    
     <style>
-        /* --- Variáveis de Tema --- */
         :root {
             --background-color: #121212;
-            --card-color: #1e1e1e;
-            --primary-text: #ffffff;
-            --secondary-text: #b3b3b3;
-            --accent-color: #1DB954; /* Cor de destaque, ex: verde Spotify */
-            --hover-color: #282828;
-            --border-color: #333333;
-        }
-
-        /* --- Reset Básico e Estilos Globais --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            --text-color: #ffffff;
+            --primary-color: #1DB954; /* Verde */
+            --card-background: #1e1e1e;
+            --border-color: #2e2e2e;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
             background-color: var(--background-color);
-            color: var(--primary-text);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
             padding: 20px;
+            display: flex;
+            justify-content: center;
         }
 
-        /* --- Container Principal --- */
         .container {
             max-width: 680px;
-            margin: 0 auto;
+            width: 100%;
             text-align: center;
         }
 
-        /* --- Header --- */
-        header {
-            margin-bottom: 20px;
-        }
-
-        .profile-logo {
-            width: 120px;
-            height: 120px;
+        .profile-pic {
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
+            border: 3px solid var(--primary-color);
             object-fit: cover;
-            border: 3px solid var(--accent-color);
-            margin-bottom: 15px;
-            background-color: transparent;
+            background-color: var(--card-background);
         }
 
-        header h1 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 5px;
+        h1 {
+            font-size: 1.8em;
+            margin: 10px 0 5px;
         }
 
-        header .subtitle {
-            font-size: 1rem;
-            color: var(--secondary-text);
-        }
-
-        /* --- Ícones Sociais e Seletor de Idioma --- */
-        .social-icons {
+        .subtitle {
+            font-size: 1em;
+            color: #b3b3b3;
             margin-bottom: 20px;
         }
 
-        .social-icons a {
-            color: var(--secondary-text);
-            font-size: 1.8rem;
-            transition: color 0.3s;
+        .tiktok-link svg {
+            width: 32px;
+            height: 32px;
+            fill: var(--text-color);
+            transition: fill 0.3s;
+        }
+        .tiktok-link:hover svg {
+            fill: var(--primary-color);
         }
 
-        .social-icons a:hover {
-            color: var(--primary-text);
-        }
-
-        .language-switcher {
-            margin-bottom: 30px;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .lang-btn {
-            background: var(--card-color);
-            color: #e0e0e0;
-            border: 1px solid var(--border-color);
-            padding: 8px 12px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-
-        .lang-btn.active, .lang-btn:hover {
-            background-color: var(--accent-color);
-            color: var(--primary-text);
-            border-color: var(--accent-color);
-        }
-
-        /* --- Notificação de Atualização --- */
-        @keyframes pulse-animation {
-            0% { box-shadow: 0 0 0 0 rgba(29, 185, 84, 0.7); }
-            100% { box-shadow: 0 0 0 15px rgba(29, 185, 84, 0); }
-        }
-
-        .update-notification {
-            display: flex;
-            align-items: center;
-            background-color: var(--card-color);
+        .update-banner {
+            background-color: var(--card-background);
+            border-left: 4px solid var(--primary-color);
             padding: 15px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            text-decoration: none;
-            color: var(--primary-text);
-            border: 1px solid var(--border-color);
-            transition: background-color 0.3s;
-        }
-
-        .update-notification:hover {
-            background-color: var(--hover-color);
-        }
-
-        .pulse {
-            width: 12px;
-            height: 12px;
-            background-color: var(--accent-color);
-            border-radius: 50%;
-            animation: pulse-animation 1.5s infinite;
-            margin-right: 15px;
-            flex-shrink: 0;
-        }
-
-        .notification-icon {
-            font-size: 1.5rem;
-            margin-right: 15px;
-        }
-
-        .notification-text {
+            margin: 30px 0;
             text-align: left;
+            border-radius: 8px;
         }
 
-        .notification-text strong {
-            display: block;
+        .update-banner p {
+            margin: 0;
+            line-height: 1.5;
         }
-
-        .notification-text span {
-            font-size: 0.9rem;
-            color: var(--secondary-text);
-        }
-
-        /* --- Títulos de Seção --- */
+        
         .section-title {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
+            font-size: 1.2em;
+            color: var(--text-color);
+            margin: 30px 0 15px;
             text-align: left;
         }
 
-        /* --- Lista de Links (Cards de App) --- */
-        .links-list {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .link-card {
-            background-color: var(--card-color);
+        .app-card {
+            background-color: var(--card-background);
             border-radius: 12px;
-            border: 1px solid var(--border-color);
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .link-card.featured {
-            border-color: var(--accent-color);
-            animation: featured-pulse 2.5s infinite;
-        }
-
-        @keyframes featured-pulse {
-            0% { box-shadow: 0 0 15px rgba(29, 185, 84, 0.2); }
-            50% { box-shadow: 0 0 25px rgba(29, 185, 84, 0.4); }
-            100% { box-shadow: 0 0 15px rgba(29, 185, 84, 0.2); }
-        }
-
-        .card-header {
+            padding: 15px;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
-            padding: 20px;
-            cursor: pointer;
+            text-align: left;
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s;
+        }
+        
+        .app-card.featured {
+            border: 1px solid var(--primary-color);
+            box-shadow: 0 0 15px rgba(29, 185, 84, 0.3);
         }
 
-        .link-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 10px;
-            margin-right: 15px;
-            flex-shrink: 0;
+        .app-card:hover {
+            transform: scale(1.02);
         }
 
-        .link-icon.large {
+        .app-card img {
             width: 60px;
             height: 60px;
+            border-radius: 10px;
+            margin-right: 15px;
+            object-fit: cover;
         }
 
-        .link-text {
-            text-align: left;
+        .app-info {
             flex-grow: 1;
         }
 
-        .link-text strong {
-            font-size: 1.1rem;
-            font-weight: 500;
+        .app-info h3 {
+            margin: 0 0 5px;
+            font-size: 1.1em;
         }
 
-        .link-text span {
-            font-size: 0.9rem;
-            color: var(--secondary-text);
-            display: block;
+        .app-info p {
+            margin: 0;
+            color: #b3b3b3;
+            font-size: 0.9em;
         }
 
-        .secret-info {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease, padding 0.5s ease;
-            padding: 0 20px;
-        }
-
-        .link-card.unlocked .secret-info {
-            max-height: 500px;
-            padding-top: 0;
-            padding-bottom: 20px;
-        }
-
-        .link-card-instruction {
-            background-color: var(--background-color);
-            padding: 15px;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            color: var(--secondary-text);
-            text-align: left;
-        }
-
-        .link-card-instruction code {
-            background-color: #000;
-            padding: 3px 6px;
-            border-radius: 4px;
-            font-family: monospace;
-            color: var(--accent-color);
-        }
-
-        /* Espaços para Anúncios */
-        .ad-section {
-            width: 100%;
-            margin: 20px 0;
-        }
-        .secret-info .ad-section {
-            margin-top: 15px;
-            margin-bottom: 20px;
-        }
-        .ad-box {
-            width: 100%;
-            min-height: 100px;
-            background-color: transparent;
-            border: 2px dashed var(--border-color);
-            border-radius: 15px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .card-footer-base, .card-footer {
-            display: flex;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .card-footer {
-            padding-top: 20px;
-            border-top: none;
-            justify-content: center;
-        }
-
-        .link-card.unlocked .card-footer-base {
-            display: none;
-        }
-
-        .info-cta {
-            flex: 1;
-            padding: 15px;
-            text-align: center;
-            background: none;
-            border: none;
-            color: var(--primary-text);
-            font-size: 1rem;
+        .unlock-button {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 20px;
             font-weight: bold;
-            cursor: pointer;
+            white-space: nowrap;
             transition: background-color 0.3s;
-            animation: cta-pulse 2s infinite ease-in-out;
         }
 
-        @keyframes cta-pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.03); }
-            100% { transform: scale(1); }
+        .unlock-button:hover {
+            background-color: #1ed760;
         }
 
-        .info-cta:hover {
-            background-color: var(--hover-color);
-        }
-
-        .info-cta i {
-            margin-right: 8px;
-            color: var(--accent-color);
-        }
-
-        .action-link {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: var(--primary-text) !important;
-            padding: 12px 30px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1rem;
-            transition: all 0.4s ease;
-            opacity: 0;
-            transform: translateY(10px);
-            transition-delay: 0.2s;
-        }
-        .link-card.unlocked .action-link {
-            opacity: 1;
-            transform: translateY(0);
-            transition-delay: 0.4s;
-        }
-        .action-link:hover {
-            background-color: #25d366;
-            transform: scale(1.05);
-        }
-
-        /* --- Rodapé --- */
-        footer {
-            text-align: center;
-            padding: 40px 20px 20px 20px;
-            color: var(--secondary-text);
-            font-size: 0.9rem;
-        }
-
-        .footer-links {
-            margin-bottom: 15px;
-        }
-
-        .footer-links a {
-            color: var(--secondary-text);
-            margin: 0 10px;
-            text-decoration: none;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary-text);
-            text-decoration: underline;
-        }
     </style>
 </head>
-<body style="background-color: #121212;">
-    <main class="container">
+<body>
+
+    <div class="container">
         <header>
-            <img src="Images/IMG_4718.png" alt="Logo PlayTvPlus" class="profile-logo">
-            <h1>@PlayTvPlus</h1>
-            <p class="subtitle" data-lang="pt">Seu hub de apps de entretenimento</p>
-            <p class="subtitle" data-lang="es" style="display:none;">Tu hub de apps de entretenimiento</p>
-            <p class="subtitle" data-lang="en" style="display:none;">Your hub for entertainment apps</p>
-            <p class="subtitle" data-lang="fr" style="display:none;">Votre hub d'applications de divertissement</p>
+            <img src="https://raw.githubusercontent.com/kevinrocosta/Page/main/Images/logo.png" alt="Logo PlayTVPlus" class="profile-pic">
+            <h1>@PlayTVPlus</h1>
+            <p class="subtitle">Seu hub de apps de entretenimento</p>
+            <a href="#" class="tiktok-link" aria-label="TikTok"> <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/></svg>
+            </a>
         </header>
 
-        <section class="social-icons">
-            <a href="https://www.tiktok.com/@pleytvplus" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-        </section>
-
-        <section class="language-switcher">
-            <button class="lang-btn active" data-set-lang="pt">🇧🇷 PT</button>
-            <button class="lang-btn" data-set-lang="es">🇲🇽 ES</button>
-            <button class="lang-btn" data-set-lang="en">🇺🇸 EN</button>
-            <button class="lang-btn" data-set-lang="fr">🇫🇷 FR</button>
-        </section>
-        
-        <a href="https://www.tiktok.com/@pleytvplus" target="_blank" class="update-notification">
-            <div class="pulse"></div>
-            <div class="notification-icon">🚀</div>
-            <div class="notification-text">
-                <strong data-lang="pt">CATÁLOGO SEMPRE ATUALIZADO!</strong>
-                <strong data-lang="es" style="display:none;">¡CATÁLOGO SIEMPRE ACTUALIZADO!</strong>
-                <strong data-lang="en" style="display:none;">CATALOG ALWAYS UPDATED!</strong>
-                <strong data-lang="fr" style="display:none;">CATALOGUE TOUJOURS À JOUR !</strong>
-                
-                <span data-lang="pt">Apps novos toda semana. Siga no TikTok para dicas diárias!</span>
-                <span data-lang="es" style="display:none;">Nuevas apps cada semana. ¡Sigue en TikTok para consejos diarios!</span>
-                <span data-lang="en" style="display:none;">New apps every week. Follow on TikTok for daily tips!</span>
-                <span data-lang="fr" style="display:none;">Nouvelles applis chaque semaine. Suivez sur TikTok pour des astuces quotidiennes !</span>
-            </div>
-        </a>
-
-        <h2 class="section-title" data-lang="pt">App em Destaque</h2>
-        <h2 class="section-title" data-lang="es" style="display:none;">App Destacada</h2>
-        <h2 class="section-title" data-lang="en" style="display:none;">Featured App</h2>
-        <h2 class="section-title" data-lang="fr" style="display:none;">App en Vedette</h2>
-
-        <section class="links-list">
-             <div class="link-card featured">
-                <div class="card-header clickable-area">
-                    <img src="Images/IMG_4722.png" alt="Anikmi" class="link-icon large">
-                    <div class="link-text">
-                        <strong>Photos Anikmi</strong>
-                        <span data-lang="pt">Transforme suas fotos com efeitos de animação por IA.</span>
-                        <span data-lang="es" style="display:none;">Transforma tus fotos con efectos de animación IA.</span>
-                        <span data-lang="en" style="display:none;">Transform your photos with AI animation effects.</span>
-                        <span data-lang="fr" style="display:none;">Transformez vos photos avec des effets d'animation IA.</span>
-                    </div>
-                </div>
-                <div class="secret-info">
-                    <div class="link-card-instruction">
-                        <span data-lang="pt"><i class="fa-solid fa-key"></i> Vá em ⚙️ e clique 7 vezes em: <code>Let’s Go</code></span>
-                        <span data-lang="es" style="display:none;"><i class="fa-solid fa-key"></i> Ve a ⚙️ y haz clic 7 veces en: <code>Let’s Go</code></span>
-                        <span data-lang="en" style="display:none;"><i class="fa-solid fa-key"></i> Go to ⚙️ and click 7 times on: <code>Let’s Go</code></span>
-                        <span data-lang="fr" style="display:none;"><i class="fa-solid fa-key"></i> Allez dans ⚙️ et cliquez 7 fois sur: <code>Let’s Go</code></span>
-                    </div>
-                    <section class="ad-section"><div class="ad-box"></div></section>
-                    <div class="card-footer">
-                        <a href="https://apps.apple.com/br/app/photos-anikmi/id6743954870" target="_blank" class="action-link">
-                            <span data-lang="pt">Abrir na App Store</span>
-                            <span data-lang="es" style="display:none;">Abrir en App Store</span>
-                            <span data-lang="en" style="display:none;">Open in App Store</span>
-                            <span data-lang="fr" style="display:none;">Ouvrir dans l'App Store</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="card-footer-base">
-                    <button class="info-cta reveal-info">
-                        <i class="fas fa-key"></i>
-                        <span data-lang="pt">Desbloquear</span>
-                        <span data-lang="es" style="display:none;">Desbloquear</span>
-                        <span data-lang="en" style="display:none;">Unlock</span>
-                        <span data-lang="fr" style="display:none;">Déverrouiller</span>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <section class="ad-section"><div class="ad-box"></div></section>
-
-        <h2 class="section-title" data-lang="pt">Mais Apps</h2>
-        <h2 class="section-title" data-lang="es" style="display:none;">Más Apps</h2>
-        <h2 class="section-title" data-lang="en" style="display:none;">More Apps</h2>
-        <h2 class="section-title" data-lang="fr" style="display:none;">Plus d'Apps</h2>
-
-        <section class="links-list">
-            <div class="link-card">
-                <div class="card-header clickable-area">
-                    <img src="Images/IMG_4719.png" alt="READ PROGRE" class="link-icon">
-                    <div class="link-text">
-                        <strong>READ PROGRE</strong>
-                        <span data-lang="pt">Gerencie sua jornada de leitura.</span>
-                        <span data-lang="es" style="display:none;">Gestiona tu viaje de lectura.</span>
-                        <span data-lang="en" style="display:none;">Manage your reading journey.</span>
-                        <span data-lang="fr" style="display:none;">Gérez votre parcours de lecture.</span>
-                    </div>
-                </div>
-                <div class="secret-info">
-                    <div class="link-card-instruction">
-                        <span data-lang="pt"><i class="fa-solid fa-key"></i> Na busca, digite o código: <code>Map</code></span>
-                        <span data-lang="es" style="display:none;"><i class="fa-solid fa-key"></i> En la búsqueda, escribe el código: <code>Map</code></span>
-                        <span data-lang="en" style="display:none;"><i class="fa-solid fa-key"></i> In the search bar, type the code: <code>Map</code></span>
-                        <span data-lang="fr" style="display:none;"><i class="fa-solid fa-key"></i> Dans la recherche, tapez le code: <code>Map</code></span>
-                    </div>
-                     <section class="ad-section"><div class="ad-box"></div></section>
-                     <div class="card-footer">
-                        <a href="https://apps.apple.com/br/app/read-progre/id6745169978" target="_blank" class="action-link">
-                            <span data-lang="pt">Abrir na App Store</span>
-                             <span data-lang="es" style="display:none;">Abrir en App Store</span>
-                            <span data-lang="en" style="display:none;">Open in App Store</span>
-                            <span data-lang="fr" style="display:none;">Ouvrir dans l'App Store</span>
-                        </a>
-                    </div>
-                </div>
-                 <div class="card-footer-base">
-                    <button class="info-cta reveal-info">
-                        <i class="fas fa-key"></i>
-                        <span data-lang="pt">Desbloquear</span>
-                        <span data-lang="es" style="display:none;">Desbloquear</span>
-                        <span data-lang="en" style="display:none;">Unlock</span>
-                        <span data-lang="fr" style="display:none;">Déverrouiller</span>
-                    </button>
-                </div>
-            </div>
-
-            <div class="link-card">
-                <div class="card-header clickable-area">
-                    <img src="Images/IMG_4720.png" alt="GameBox" class="link-icon">
-                    <div class="link-text">
-                        <strong>GameBox: Perfect Game</strong>
-                        <span data-lang="pt">Desafie sua mente com mini-jogos.</span>
-                        <span data-lang="es" style="display:none;">Desafía tu mente con minijuegos.</span>
-                        <span data-lang="en" style="display:none;">Challenge your mind with mini-games.</span>
-                        <span data-lang="fr" style="display:none;">Défiez votre esprit avec des mini-jeux.</span>
-                    </div>
-                </div>
-                <div class="secret-info">
-                    <div class="link-card-instruction">
-                        <span data-lang="pt"><i class="fa-solid fa-key"></i> Vá em ⚙️ e ative a opção: <code>Sound</code></span>
-                        <span data-lang="es" style="display:none;"><i class="fa-solid fa-key"></i> Ve a ⚙️ y activa la opción: <code>Sound</code></span>
-                        <span data-lang="en" style="display:none;"><i class="fa-solid fa-key"></i> Go to ⚙️ and activate the option: <code>Sound</code></span>
-                        <span data-lang="fr" style="display:none;"><i class="fa-solid fa-key"></i> Allez dans ⚙️ et activez l'option: <code>Sound</code></span>
-                    </div>
-                     <section class="ad-section"><div class="ad-box"></div></section>
-                     <div class="card-footer">
-                        <a href="https://apps.apple.com/br/app/gamebox-perfect-game/id6747025926" target="_blank" class="action-link">
-                            <span data-lang="pt">Abrir na App Store</span>
-                             <span data-lang="es" style="display:none;">Abrir en App Store</span>
-                            <span data-lang="en" style="display:none;">Open in App Store</span>
-                            <span data-lang="fr" style="display:none;">Ouvrir dans l'App Store</span>
-                        </a>
-                    </div>
-                </div>
-                 <div class="card-footer-base">
-                     <button class="info-cta reveal-info">
-                        <i class="fas fa-key"></i>
-                        <span data-lang="pt">Desbloquear</span>
-                        <span data-lang="es" style="display:none;">Desbloquear</span>
-                        <span data-lang="en" style="display:none;">Unlock</span>
-                        <span data-lang="fr" style="display:none;">Déverrouiller</span>
-                    </button>
-                </div>
-            </div>
-        </section>
-    </main>
-    
-    <footer>
-        <div class="footer-links">
-            <a href="politica-de-privacidade.html" target="_blank">Política de Privacidade</a>
-            <a href="termos-de-uso.html" target="_blank">Termos de Uso</a>
+        <div class="update-banner">
+            <p>🚀 <strong>CATÁLOGO SEMPRE ATUALIZADO!</strong> Apps novos toda semana. Siga no TikTok para dicas diárias!</p>
         </div>
-        <p>PlayTvPlus © 2025. Todos os direitos reservados.</p>
-    </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        <main>
+            <h2 class="section-title">App em Destaque</h2>
+            
+            <div class="app-card featured">
+                <img src="https://raw.githubusercontent.com/kevinrocosta/Page/main/Images/logo-anikmi.png" alt="Logo Anikmi">
+                <div class="app-info">
+                    <h3>Photos Anikmi</h3>
+                    <p>Transforme suas fotos com efeitos de animação por IA.</p>
+                </div>
+                <a href="#" class="unlock-button">Desbloquear</a> </div>
 
-            // --- LÓGICA PARA TROCAR O IDIOMA (COM MEMÓRIA) ---
-            const langButtons = document.querySelectorAll('.lang-btn');
-            const translatableElements = document.querySelectorAll('[data-lang]');
-            const savedLang = localStorage.getItem('preferredLanguage') || 'pt';
+            <h2 class="section-title">Todos os Apps</h2>
+            
+            <div class="app-card">
+                <img src="https://raw.githubusercontent.com/kevinrocosta/Page/main/Images/logo.png" alt="Logo Play TV">
+                <div class="app-info">
+                    <h3>Play TV</h3>
+                    <p>Sua central de entretenimento e canais.</p>
+                </div>
+                <a href="#" class="unlock-button">Desbloquear</a> </div>
 
-            function setLanguage(lang) {
-                translatableElements.forEach(el => {
-                    el.style.display = 'none';
-                });
-                document.querySelectorAll(`[data-lang="${lang}"]`).forEach(el => {
-                    // Usa o estilo de display original do elemento se disponível, senão 'block'
-                    const displayStyle = el.getAttribute('data-original-display') || 'block';
-                    el.style.display = displayStyle;
-                });
-                langButtons.forEach(btn => {
-                    btn.classList.toggle('active', btn.dataset.setLang === lang);
-                });
-                localStorage.setItem('preferredLanguage', lang);
-                document.documentElement.lang = lang;
-            }
+            <div class="app-card">
+                <img src="https://raw.githubusercontent.com/kevinrocosta/Page/main/Images/logo-gamebox.png" alt="Logo Gamebox">
+                <div class="app-info">
+                    <h3>Gamebox</h3>
+                    <p>Descubra e jogue novos jogos incríveis.</p>
+                </div>
+                <a href="#" class="unlock-button">Desbloquear</a> </div>
 
-            // Armazena o display original para evitar que 'span' vire 'block'
-            translatableElements.forEach(el => {
-                const originalDisplay = window.getComputedStyle(el).display;
-                if(originalDisplay !== 'none') {
-                    el.setAttribute('data-original-display', originalDisplay);
-                }
-            });
+            <div class="app-card">
+                <img src="https://raw.githubusercontent.com/kevinrocosta/Page/main/Images/logo-readprogre.png" alt="Logo Readprogre">
+                <div class="app-info">
+                    <h3>ReadProgre</h3>
+                    <p>Acompanhe seu progresso de leitura.</p>
+                </div>
+                <a href="#" class="unlock-button">Desbloquear</a> </div>
 
-            langButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    setLanguage(button.dataset.setLang);
-                });
-            });
+        </main>
+    </div>
 
-            setLanguage(savedLang);
-
-            // --- LÓGICA PARA DESBLOQUEAR O CARD ---
-            const allLinkCards = document.querySelectorAll('.link-card');
-
-            allLinkCards.forEach(card => {
-                const revealButton = card.querySelector('.reveal-info');
-                const clickableArea = card.querySelector('.clickable-area');
-                
-                // Função unificada para abrir/fechar a seção de detalhes
-                function toggleUnlock(event) {
-                    event.stopPropagation();
-                    card.classList.toggle('unlocked');
-                }
-
-                // Tanto o botão "Desbloquear" quanto a área do cabeçalho fazem a mesma coisa.
-                if (revealButton) {
-                    revealButton.addEventListener('click', toggleUnlock);
-                }
-                if (clickableArea) {
-                    clickableArea.addEventListener('click', toggleUnlock);
-                }
-            });
-
-        });
-    </script>
 </body>
 </html>
