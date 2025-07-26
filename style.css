@@ -80,7 +80,7 @@ header .subtitle {
 
 .lang-btn {
     background: var(--card-color);
-    color: var(--secondary-text);
+    color: #e0e0e0; /* CORRIGIDO PARA MAIOR CONTRASTE */
     border: 1px solid var(--border-color);
     padding: 8px 12px;
     border-radius: 20px;
@@ -96,6 +96,11 @@ header .subtitle {
 }
 
 /* --- Notificação de Atualização --- */
+@keyframes pulse-animation {
+    0% { box-shadow: 0 0 0 0 rgba(29, 185, 84, 0.7); }
+    100% { box-shadow: 0 0 0 15px rgba(29, 185, 84, 0); }
+}
+
 .update-notification {
     display: flex;
     align-items: center;
@@ -114,18 +119,13 @@ header .subtitle {
 }
 
 .pulse {
-    width: 12px; /* Correção: Largura e altura iguais */
+    width: 12px; /* CORRIGIDO: Largura e altura iguais */
     height: 12px;
     background-color: var(--accent-color);
     border-radius: 50%; /* Garante um círculo perfeito */
     animation: pulse-animation 1.5s infinite;
     margin-right: 15px;
     flex-shrink: 0;
-}
-
-@keyframes pulse-animation {
-    0% { box-shadow: 0 0 0 0 rgba(29, 185, 84, 0.7); }
-    100% { box-shadow: 0 0 0 15px rgba(29, 185, 84, 0); }
 }
 
 .notification-icon {
@@ -158,7 +158,6 @@ header .subtitle {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    margin-bottom: 30px;
 }
 
 .link-card {
@@ -276,12 +275,14 @@ header .subtitle {
     border-top: 1px solid var(--border-color);
 }
 
-/* Ajuste para o rodapé que está fora da seção secreta */
-.link-card .card-footer-base {
-    padding: 0;
+.card-footer {
+    padding-top: 20px;
+    border-top: none;
+    justify-content: center;
 }
+
 .link-card.unlocked .card-footer-base {
-    display: none; /* Esconde o botão "Desbloquear" quando o card está aberto */
+    display: none;
 }
 
 .info-cta {
@@ -337,10 +338,67 @@ header .subtitle {
     transform: scale(1.05);
 }
 
+/* Seção da Newsletter */
+.newsletter-section {
+    background-color: var(--card-color);
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    padding: 30px;
+    margin-top: 40px;
+    text-align: center;
+}
+.newsletter-subtitle {
+    color: var(--secondary-text);
+    font-size: 0.95rem;
+    margin-top: -15px;
+    margin-bottom: 25px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.newsletter-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+.newsletter-section input[type="email"] {
+    background-color: #2a2a2a;
+    border: 1px solid var(--border-color);
+    padding: 14px;
+    border-radius: 10px;
+    color: var(--primary-text);
+    font-family: var(--font-family);
+    font-size: 1rem;
+    text-align: center;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+.newsletter-section input[type="email"]:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 10px rgba(29, 185, 84, 0.3);
+}
+.newsletter-section button[type="submit"] {
+    background-color: var(--accent-color);
+    color: var(--primary-text);
+    padding: 14px;
+    border-radius: 25px;
+    border: none;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+.newsletter-section button[type="submit"]:hover {
+    background-color: #25d366;
+    transform: scale(1.05);
+}
+
 /* --- Rodapé --- */
 footer {
     text-align: center;
-    padding: 20px;
+    padding: 40px 20px 20px 20px;
     color: var(--secondary-text);
     font-size: 0.9rem;
 }
@@ -360,7 +418,7 @@ footer {
     text-decoration: underline;
 }
 
-/* --- Estilos para Páginas Legais (Privacidade/Termos) --- */
+/* --- Estilos para Páginas Legais --- */
 .legal-container {
     max-width: 800px;
     margin: 40px auto;
@@ -370,7 +428,6 @@ footer {
     text-align: left;
     border: 1px solid var(--border-color);
 }
-
 .legal-container h1 { margin-bottom: 20px; color: var(--primary-text); }
 .legal-container h2 { margin-top: 30px; margin-bottom: 15px; color: var(--primary-text); }
 .legal-container p, .legal-container li { margin-bottom: 15px; line-height: 1.6; color: var(--secondary-text); }
