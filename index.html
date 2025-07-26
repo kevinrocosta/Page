@@ -12,13 +12,372 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="style.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="style.css"></noscript>
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"></noscript>
+
+    <style>
+        /* --- Variáveis de Tema --- */
+        :root {
+            --background-color: #121212;
+            --card-color: #1e1e1e;
+            --primary-text: #ffffff;
+            --secondary-text: #b3b3b3;
+            --accent-color: #1DB954; /* Cor de destaque, ex: verde Spotify */
+            --hover-color: #282828;
+            --border-color: #333333;
+        }
+
+        /* --- Reset Básico e Estilos Globais --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--primary-text);
+            padding: 20px;
+        }
+
+        /* --- Container Principal --- */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /* --- Header --- */
+        header {
+            margin-bottom: 20px;
+        }
+
+        .profile-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-color);
+            margin-bottom: 15px;
+            background-color: transparent;
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        header .subtitle {
+            font-size: 1rem;
+            color: var(--secondary-text);
+        }
+
+        /* --- Ícones Sociais e Seletor de Idioma --- */
+        .social-icons {
+            margin-bottom: 20px;
+        }
+
+        .social-icons a {
+            color: var(--secondary-text);
+            font-size: 1.8rem;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--primary-text);
+        }
+
+        .language-switcher {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            background: var(--card-color);
+            color: #e0e0e0;
+            border: 1px solid var(--border-color);
+            padding: 8px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .lang-btn.active, .lang-btn:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-text);
+            border-color: var(--accent-color);
+        }
+
+        /* --- Notificação de Atualização --- */
+        @keyframes pulse-animation {
+            0% { box-shadow: 0 0 0 0 rgba(29, 185, 84, 0.7); }
+            100% { box-shadow: 0 0 0 15px rgba(29, 185, 84, 0); }
+        }
+
+        .update-notification {
+            display: flex;
+            align-items: center;
+            background-color: var(--card-color);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            text-decoration: none;
+            color: var(--primary-text);
+            border: 1px solid var(--border-color);
+            transition: background-color 0.3s;
+        }
+
+        .update-notification:hover {
+            background-color: var(--hover-color);
+        }
+
+        .pulse {
+            width: 12px;
+            height: 12px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            animation: pulse-animation 1.5s infinite;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .notification-icon {
+            font-size: 1.5rem;
+            margin-right: 15px;
+        }
+
+        .notification-text {
+            text-align: left;
+        }
+
+        .notification-text strong {
+            display: block;
+        }
+
+        .notification-text span {
+            font-size: 0.9rem;
+            color: var(--secondary-text);
+        }
+
+        /* --- Títulos de Seção --- */
+        .section-title {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        /* --- Lista de Links (Cards de App) --- */
+        .links-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .link-card {
+            background-color: var(--card-color);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .link-card.featured {
+            border-color: var(--accent-color);
+            animation: featured-pulse 2.5s infinite;
+        }
+
+        @keyframes featured-pulse {
+            0% { box-shadow: 0 0 15px rgba(29, 185, 84, 0.2); }
+            50% { box-shadow: 0 0 25px rgba(29, 185, 84, 0.4); }
+            100% { box-shadow: 0 0 15px rgba(29, 185, 84, 0.2); }
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            cursor: pointer;
+        }
+
+        .link-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .link-icon.large {
+            width: 60px;
+            height: 60px;
+        }
+
+        .link-text {
+            text-align: left;
+            flex-grow: 1;
+        }
+
+        .link-text strong {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .link-text span {
+            font-size: 0.9rem;
+            color: var(--secondary-text);
+            display: block;
+        }
+
+        .secret-info {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.5s ease;
+            padding: 0 20px;
+        }
+
+        .link-card.unlocked .secret-info {
+            max-height: 500px;
+            padding-top: 0;
+            padding-bottom: 20px;
+        }
+
+        .link-card-instruction {
+            background-color: var(--background-color);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--secondary-text);
+            text-align: left;
+        }
+
+        .link-card-instruction code {
+            background-color: #000;
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            color: var(--accent-color);
+        }
+
+        /* Espaços para Anúncios */
+        .ad-section {
+            width: 100%;
+            margin: 20px 0;
+        }
+        .secret-info .ad-section {
+            margin-top: 15px;
+            margin-bottom: 20px;
+        }
+        .ad-box {
+            width: 100%;
+            min-height: 100px;
+            background-color: transparent;
+            border: 2px dashed var(--border-color);
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card-footer-base, .card-footer {
+            display: flex;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .card-footer {
+            padding-top: 20px;
+            border-top: none;
+            justify-content: center;
+        }
+
+        .link-card.unlocked .card-footer-base {
+            display: none;
+        }
+
+        .info-cta {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            background: none;
+            border: none;
+            color: var(--primary-text);
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            animation: cta-pulse 2s infinite ease-in-out;
+        }
+
+        @keyframes cta-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
+        .info-cta:hover {
+            background-color: var(--hover-color);
+        }
+
+        .info-cta i {
+            margin-right: 8px;
+            color: var(--accent-color);
+        }
+
+        .action-link {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--primary-text) !important;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(10px);
+            transition-delay: 0.2s;
+        }
+        .link-card.unlocked .action-link {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.4s;
+        }
+        .action-link:hover {
+            background-color: #25d366;
+            transform: scale(1.05);
+        }
+
+        /* --- Rodapé --- */
+        footer {
+            text-align: center;
+            padding: 40px 20px 20px 20px;
+            color: var(--secondary-text);
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: var(--secondary-text);
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-text);
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body style="background-color: #121212;">
     <main class="container">
         <header>
-            <img src="Images/logo.png" alt="Logo PlayTvPlus" class="profile-logo">
+            <img src="Images/IMG_4718.png" alt="Logo PlayTvPlus" class="profile-logo">
             <h1>@PlayTvPlus</h1>
             <p class="subtitle" data-lang="pt">Seu hub de apps de entretenimento</p>
             <p class="subtitle" data-lang="es" style="display:none;">Tu hub de apps de entretenimiento</p>
@@ -61,7 +420,7 @@
         <section class="links-list">
              <div class="link-card featured">
                 <div class="card-header clickable-area">
-                    <img src="Images/logo-anikmi.png" alt="Anikmi" class="link-icon large">
+                    <img src="Images/IMG_4722.png" alt="Anikmi" class="link-icon large">
                     <div class="link-text">
                         <strong>Photos Anikmi</strong>
                         <span data-lang="pt">Transforme suas fotos com efeitos de animação por IA.</span>
@@ -77,7 +436,7 @@
                         <span data-lang="en" style="display:none;"><i class="fa-solid fa-key"></i> Go to ⚙️ and click 7 times on: <code>Let’s Go</code></span>
                         <span data-lang="fr" style="display:none;"><i class="fa-solid fa-key"></i> Allez dans ⚙️ et cliquez 7 fois sur: <code>Let’s Go</code></span>
                     </div>
-                    <section class="ad-section"><div class="ad-box"><span class="ad-placeholder">Publicidade</span></div></section>
+                    <section class="ad-section"><div class="ad-box"></div></section>
                     <div class="card-footer">
                         <a href="https://apps.apple.com/br/app/photos-anikmi/id6743954870" target="_blank" class="action-link">
                             <span data-lang="pt">Abrir na App Store</span>
@@ -99,7 +458,7 @@
             </div>
         </section>
 
-        <section class="ad-section"><div class="ad-box"><span class="ad-placeholder">Publicidade</span></div></section>
+        <section class="ad-section"><div class="ad-box"></div></section>
 
         <h2 class="section-title" data-lang="pt">Mais Apps</h2>
         <h2 class="section-title" data-lang="es" style="display:none;">Más Apps</h2>
@@ -109,7 +468,7 @@
         <section class="links-list">
             <div class="link-card">
                 <div class="card-header clickable-area">
-                    <img src="Images/logo-readprogre.png" alt="READ PROGRE" class="link-icon">
+                    <img src="Images/IMG_4719.png" alt="READ PROGRE" class="link-icon">
                     <div class="link-text">
                         <strong>READ PROGRE</strong>
                         <span data-lang="pt">Gerencie sua jornada de leitura.</span>
@@ -125,7 +484,7 @@
                         <span data-lang="en" style="display:none;"><i class="fa-solid fa-key"></i> In the search bar, type the code: <code>Map</code></span>
                         <span data-lang="fr" style="display:none;"><i class="fa-solid fa-key"></i> Dans la recherche, tapez le code: <code>Map</code></span>
                     </div>
-                     <section class="ad-section"><div class="ad-box"><span class="ad-placeholder">Publicidade</span></div></section>
+                     <section class="ad-section"><div class="ad-box"></div></section>
                      <div class="card-footer">
                         <a href="https://apps.apple.com/br/app/read-progre/id6745169978" target="_blank" class="action-link">
                             <span data-lang="pt">Abrir na App Store</span>
@@ -148,7 +507,7 @@
 
             <div class="link-card">
                 <div class="card-header clickable-area">
-                    <img src="Images/logo-gamebox.png" alt="GameBox" class="link-icon">
+                    <img src="Images/IMG_4720.png" alt="GameBox" class="link-icon">
                     <div class="link-text">
                         <strong>GameBox: Perfect Game</strong>
                         <span data-lang="pt">Desafie sua mente com mini-jogos.</span>
@@ -164,7 +523,7 @@
                         <span data-lang="en" style="display:none;"><i class="fa-solid fa-key"></i> Go to ⚙️ and activate the option: <code>Sound</code></span>
                         <span data-lang="fr" style="display:none;"><i class="fa-solid fa-key"></i> Allez dans ⚙️ et activez l'option: <code>Sound</code></span>
                     </div>
-                     <section class="ad-section"><div class="ad-box"><span class="ad-placeholder">Publicidade</span></div></section>
+                     <section class="ad-section"><div class="ad-box"></div></section>
                      <div class="card-footer">
                         <a href="https://apps.apple.com/br/app/gamebox-perfect-game/id6747025926" target="_blank" class="action-link">
                             <span data-lang="pt">Abrir na App Store</span>
@@ -185,26 +544,6 @@
                 </div>
             </div>
         </section>
-
-        <section class="newsletter-section">
-            <h2 class="section-title" data-lang="pt">Seja um Membro VIP!</h2>
-            <h2 class="section-title" data-lang="es" style="display:none;">¡Sé un Miembro VIP!</h2>
-            <h2 class="section-title" data-lang="en" style="display:none;">Become a VIP Member!</h2>
-            <h2 class="section-title" data-lang="fr" style="display:none;">Devenez Membre VIP !</h2>
-            
-            <p class="newsletter-subtitle" data-lang="pt">Receba acesso antecipado aos novos apps. Inscreva-se e não perca nada.</p>
-            <p class="newsletter-subtitle" data-lang="es" style="display:none;">Recibe acceso anticipado a las nuevas apps. Suscríbete y no te pierdas nada.</p>
-            <p class="newsletter-subtitle" data-lang="en" style="display:none;">Get early access to new apps. Subscribe and don't miss a thing.</p>
-            <p class="newsletter-subtitle" data-lang="fr" style="display:none;">Obtenez un accès anticipé aux nouvelles applis. Abonnez-vous et ne manquez rien.</p>
-
-            <form action="[COLE AQUI O LINK DO SEU FORMULÁRIO MAILCHIMP]" method="post" target="_blank">
-                <input type="email" name="EMAIL" placeholder="Seu melhor e-mail" required>
-                <button type="submit" data-lang="pt">Quero ser VIP</button>
-                <button type="submit" data-lang="es" style="display:none;">Quiero ser VIP</button>
-                <button type="submit" data-lang="en" style="display:none;">I want to be a VIP</button>
-                <button type="submit" data-lang="fr" style="display:none;">Je veux être VIP</button>
-            </form>
-        </section>
     </main>
     
     <footer>
@@ -215,6 +554,69 @@
         <p>PlayTvPlus © 2025. Todos os direitos reservados.</p>
     </footer>
 
-    <script src="script.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- LÓGICA PARA TROCAR O IDIOMA (COM MEMÓRIA) ---
+            const langButtons = document.querySelectorAll('.lang-btn');
+            const translatableElements = document.querySelectorAll('[data-lang]');
+            const savedLang = localStorage.getItem('preferredLanguage') || 'pt';
+
+            function setLanguage(lang) {
+                translatableElements.forEach(el => {
+                    el.style.display = 'none';
+                });
+                document.querySelectorAll(`[data-lang="${lang}"]`).forEach(el => {
+                    // Usa o estilo de display original do elemento se disponível, senão 'block'
+                    const displayStyle = el.getAttribute('data-original-display') || 'block';
+                    el.style.display = displayStyle;
+                });
+                langButtons.forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.setLang === lang);
+                });
+                localStorage.setItem('preferredLanguage', lang);
+                document.documentElement.lang = lang;
+            }
+
+            // Armazena o display original para evitar que 'span' vire 'block'
+            translatableElements.forEach(el => {
+                const originalDisplay = window.getComputedStyle(el).display;
+                if(originalDisplay !== 'none') {
+                    el.setAttribute('data-original-display', originalDisplay);
+                }
+            });
+
+            langButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    setLanguage(button.dataset.setLang);
+                });
+            });
+
+            setLanguage(savedLang);
+
+            // --- LÓGICA PARA DESBLOQUEAR O CARD ---
+            const allLinkCards = document.querySelectorAll('.link-card');
+
+            allLinkCards.forEach(card => {
+                const revealButton = card.querySelector('.reveal-info');
+                const clickableArea = card.querySelector('.clickable-area');
+                
+                // Função unificada para abrir/fechar a seção de detalhes
+                function toggleUnlock(event) {
+                    event.stopPropagation();
+                    card.classList.toggle('unlocked');
+                }
+
+                // Tanto o botão "Desbloquear" quanto a área do cabeçalho fazem a mesma coisa.
+                if (revealButton) {
+                    revealButton.addEventListener('click', toggleUnlock);
+                }
+                if (clickableArea) {
+                    clickableArea.addEventListener('click', toggleUnlock);
+                }
+            });
+
+        });
+    </script>
 </body>
 </html>
