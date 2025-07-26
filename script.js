@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-
-    // --- LÓGICA PARA TROCAR O IDIOMA (COM MEMÓRIA) ---
+    // --- LÓGICA PARA TROCAR O IDIOMA ---
     const langButtons = document.querySelectorAll('.lang-btn');
     const translatableElements = document.querySelectorAll('[data-lang]');
     const savedLang = localStorage.getItem('preferredLanguage') || 'pt';
@@ -10,8 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
             el.style.display = 'none';
         });
         document.querySelectorAll(`[data-lang="${lang}"]`).forEach(el => {
-            // Usa o estilo de display original do elemento se disponível, senão 'block'
-            const displayStyle = el.getAttribute('data-original-display') || 'block';
+            const displayStyle = el.classList.contains('action-link') ? 'inline-block' : 'block';
             el.style.display = displayStyle;
         });
         langButtons.forEach(btn => {
@@ -20,43 +18,34 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('preferredLanguage', lang);
         document.documentElement.lang = lang;
     }
-
-    // Armazena o display original para evitar que 'span' vire 'block'
-    translatableElements.forEach(el => {
-        const originalDisplay = window.getComputedStyle(el).display;
-        if(originalDisplay !== 'none') {
-            el.setAttribute('data-original-display', originalDisplay);
-        }
-    });
-
+    setLanguage(savedLang);
     langButtons.forEach(button => {
         button.addEventListener('click', () => {
             setLanguage(button.dataset.setLang);
         });
     });
 
-    setLanguage(savedLang);
-
-    // --- LÓGICA PARA DESBLOQUEAR O CARD ---
+    // --- LÓGICA PARA DESBLOQUEAR O CARD (com monetização) ---
     const allLinkCards = document.querySelectorAll('.link-card');
 
     allLinkCards.forEach(card => {
-        const revealButton = card.querySelector('.reveal-info');
-        const clickableArea = card.querySelector('.clickable-area');
-        
-        // Função unificada para abrir/fechar a seção de detalhes
+        const header = card.querySelector('.card-header');
+        const ctaButton = card.querySelector('.info-cta');
+
         function toggleUnlock(event) {
             event.stopPropagation();
+            
+            // Abre o anúncio SOMENTE na primeira vez que o card for desbloqueado
+            if (!card.classList.contains('unlocked')) {
+                const monetagDirectLink = "https://otieu.com/4/9628559"; // SEU LINK DIRETO
+                window.open(monetagDirectLink, '_blank');
+            }
+            
+            // Adiciona ou remove a classe .unlocked para o CSS fazer a animação
             card.classList.toggle('unlocked');
         }
-
-        // Tanto o botão "Desbloquear" quanto a área do cabeçalho fazem a mesma coisa.
-        if (revealButton) {
-            revealButton.addEventListener('click', toggleUnlock);
-        }
-        if (clickableArea) {
-            clickableArea.addEventListener('click', toggleUnlock);
-        }
+        
+        if (header) header.addEventListener('click', toggleUnlock);
+        if (ctaButton) ctaButton.addEventListener('click', toggleUnlock);
     });
-
 });
