@@ -10,7 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
             el.style.display = 'none';
         });
         document.querySelectorAll(`[data-lang="${lang}"]`).forEach(el => {
-            el.style.display = 'block';
+            // Usa o estilo de display original do elemento se disponível, senão 'block'
+            const displayStyle = el.getAttribute('data-original-display') || 'block';
+            el.style.display = displayStyle;
         });
         langButtons.forEach(btn => {
             btn.classList.toggle('active', btn.dataset.setLang === lang);
@@ -18,6 +20,14 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('preferredLanguage', lang);
         document.documentElement.lang = lang;
     }
+
+    // Armazena o display original para evitar que 'span' vire 'block'
+    translatableElements.forEach(el => {
+        const originalDisplay = window.getComputedStyle(el).display;
+        if(originalDisplay !== 'none') {
+            el.setAttribute('data-original-display', originalDisplay);
+        }
+    });
 
     langButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -27,13 +37,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setLanguage(savedLang);
 
-    // --- LÓGICA PARA DESBLOQUEAR O CARD E MOSTRAR BOTÃO COM DELAY ---
+    // --- LÓGICA PARA DESBLOQUEAR O CARD ---
     const allLinkCards = document.querySelectorAll('.link-card');
 
     allLinkCards.forEach(card => {
         const revealButton = card.querySelector('.reveal-info');
         const clickableArea = card.querySelector('.clickable-area');
         
+        // Função unificada para abrir/fechar a seção de detalhes
         function toggleUnlock(event) {
             event.stopPropagation();
             card.classList.toggle('unlocked');
