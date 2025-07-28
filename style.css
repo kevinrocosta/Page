@@ -147,13 +147,17 @@ header .subtitle {
 
 .secret-info {
     max-height: 0;
+    opacity: 0;
     overflow: hidden;
-    transition: max-height 0.5s ease, padding 0.5s ease;
+    transform: translateY(-10px);
+    transition: all 0.4s ease-in-out;
     padding: 0 20px;
 }
 
 .link-card.unlocked .secret-info {
     max-height: 500px; /* Altura máxima para a animação */
+    opacity: 1;
+    transform: translateY(0);
     padding-bottom: 20px;
 }
 
@@ -164,7 +168,7 @@ header .subtitle {
     font-size: 0.9rem;
     color: var(--secondary-text);
     text-align: left;
-    margin-bottom: 20px; /* Adicionado para separar da CTA */
+    margin-bottom: 20px;
 }
 
 .link-card-instruction code {
@@ -178,10 +182,13 @@ header .subtitle {
 .card-footer-base {
     display: flex;
     border-top: 1px solid var(--border-color);
+    transition: opacity 0.3s ease;
 }
 
 .link-card.unlocked .card-footer-base {
-    display: none;
+    opacity: 0;
+    pointer-events: none;
+    display: none; /* Garante que o espaço seja recolhido */
 }
 
 .info-cta {
@@ -221,10 +228,12 @@ header .subtitle {
     opacity: 0;
     transform: translateY(10px);
 }
+
 .link-card.unlocked .action-link {
     opacity: 1;
     transform: translateY(0);
 }
+
 .action-link:hover {
     background-color: #25d366;
     transform: scale(1.05);
@@ -252,20 +261,3 @@ footer {
     color: var(--primary-text);
     text-decoration: underline;
 }
-
-/* --- Estilos para Páginas Legais --- */
-.legal-container {
-    max-width: 800px;
-    margin: 40px auto;
-    background-color: var(--card-color);
-    padding: 30px 40px;
-    border-radius: 15px;
-    text-align: left;
-    border: 1px solid var(--border-color);
-}
-.legal-container h1 { margin-bottom: 20px; color: var(--primary-text); }
-.legal-container h2 { margin-top: 30px; margin-bottom: 15px; color: var(--primary-text); }
-.legal-container p, .legal-container li { margin-bottom: 15px; line-height: 1.6; color: var(--secondary-text); }
-.legal-container ul { padding-left: 20px; }
-.back-link { display: inline-block; margin-top: 30px; color: var(--accent-color); font-weight: bold; text-decoration: none; }
-.back-link:hover { text-decoration: underline; }
