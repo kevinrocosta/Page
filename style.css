@@ -164,6 +164,7 @@ header .subtitle {
     font-size: 0.9rem;
     color: var(--secondary-text);
     text-align: left;
+    margin-bottom: 20px; /* Adicionado para separar da CTA */
 }
 
 .link-card-instruction code {
@@ -172,28 +173,6 @@ header .subtitle {
     border-radius: 4px;
     font-family: monospace;
     color: var(--accent-color);
-}
-
-/* Espaços para Anúncios */
-.ad-section {
-    width: 100%;
-    margin: 20px 0;
-}
-
-.ad-box {
-    width: 100%;
-    min-height: 100px;
-    background-color: transparent;
-    border: 2px dashed var(--border-color);
-    border-radius: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.ad-placeholder {
-    color: var(--secondary-text);
-    font-weight: 500;
-    font-size: 0.9rem;
 }
 
 .card-footer-base {
