@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- LÓGICA PARA TROCAR O IDIOMA ---
+    
+    // --- LÓGICA DE MÚLTIPLOS IDIOMAS (Sem alterações) ---
     const langButtons = document.querySelectorAll('.lang-btn');
     const translatableElements = document.querySelectorAll('[data-lang]');
     const savedLang = localStorage.getItem('preferredLanguage') || 'pt';
@@ -37,23 +38,49 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- LÓGICA SIMPLIFICADA PARA DESBLOQUEAR O CARD (SEM MONETIZAÇÃO) ---
+    // --- NOVA LÓGICA DE DESBLOQUEIO PERMANENTE COM DIRECT LINK ---
+
+    // 1. Defina seu Direct Link da Adsterra aqui
+    const adsterraDirectLink = 'https://www.profitableratecpm.com/f2tswgnah?key=1ffb3a6a53e1fcd54e81097d1af7e4e2';
+
     const allLinkCards = document.querySelectorAll('.link-card');
 
-    allLinkCards.forEach(card => {
-        const header = card.querySelector('.card-header');
-        const ctaButton = card.querySelector('.info-cta');
+    // 2. Função que verifica o localStorage e desbloqueia os cards ao carregar a página
+    function checkUnlockedCards() {
+        const unlockedCards = JSON.parse(localStorage.getItem('unlockedCards')) || [];
+        unlockedCards.forEach(cardId => {
+            const cardToUnlock = document.querySelector(`.link-card[data-id="${cardId}"]`);
+            if (cardToUnlock) {
+                cardToUnlock.classList.add('unlocked');
+            }
+        });
+    }
 
-        function toggleUnlock(event) {
-            // Impede que o clique se propague para outros elementos
-            event.stopPropagation();
-            
-            // Simplesmente alterna a classe 'unlocked' para mostrar/esconder a dica
-            card.classList.toggle('unlocked');
+    // 3. Loop para adicionar o evento de clique em cada botão de desbloqueio
+    allLinkCards.forEach(card => {
+        const unlockButton = card.querySelector('.info-cta');
+        const cardId = card.dataset.id; // Pega o ID único do card (ex: "chembal")
+
+        if (unlockButton) {
+            unlockButton.addEventListener('click', (event) => {
+                event.stopPropagation();
+
+                // Abre o Direct Link em uma nova aba
+                window.open(adsterraDirectLink, '_blank');
+
+                // Adiciona a classe 'unlocked' para mostrar a dica e o link da App Store
+                card.classList.add('unlocked');
+
+                // Salva o ID deste card no localStorage para que ele permaneça desbloqueado
+                let unlockedCards = JSON.parse(localStorage.getItem('unlockedCards')) || [];
+                if (!unlockedCards.includes(cardId)) {
+                    unlockedCards.push(cardId);
+                    localStorage.setItem('unlockedCards', JSON.stringify(unlockedCards));
+                }
+            });
         }
-        
-        // Adiciona o evento de clique tanto no cabeçalho quanto no botão do card
-        if (header) header.addEventListener('click', toggleUnlock);
-        if (ctaButton) ctaButton.addEventListener('click', toggleUnlock);
     });
+
+    // 4. Executa a verificação assim que a página carrega
+    checkUnlockedCards();
 });
