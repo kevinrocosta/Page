@@ -4,7 +4,7 @@
     --card-color: #1e1e1e;
     --primary-text: #ffffff;
     --secondary-text: #b3b3b3;
-    --accent-color: #1DB954; /* Cor de destaque, ex: verde Spotify */
+    --accent-color: #1DB954; /* Verde padrão */
     --hover-color: #282828;
     --border-color: #333333;
 }
@@ -35,12 +35,13 @@ header {
     margin-bottom: 20px;
 }
 
+/* ATUALIZADO: Estilo para a logo quadrada, não mais redonda. */
 .profile-logo {
     width: 120px;
     height: 120px;
-    border-radius: 50%;
+    border-radius: 22px; 
     object-fit: cover;
-    border: 3px solid var(--accent-color);
+    border: none;
     margin-bottom: 15px;
     background-color: transparent;
 }
@@ -155,7 +156,7 @@ header .subtitle {
 }
 
 .link-card.unlocked .secret-info {
-    max-height: 500px; /* Altura máxima para a animação */
+    max-height: 500px;
     opacity: 1;
     transform: translateY(0);
     padding-bottom: 20px;
@@ -188,7 +189,7 @@ header .subtitle {
 .link-card.unlocked .card-footer-base {
     opacity: 0;
     pointer-events: none;
-    display: none; /* Garante que o espaço seja recolhido */
+    display: none;
 }
 
 .info-cta {
